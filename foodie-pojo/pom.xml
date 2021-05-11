@@ -12,4 +12,18 @@
     <artifactId>foodie-pojo</artifactId>
 
 
+    <!--
+        pojo依赖common
+    -->
+    <dependencies>
+
+        <dependency>
+            <groupId>architect</groupId>
+            <artifactId>foodie-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
 </project>
