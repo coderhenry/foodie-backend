@@ -18,7 +18,7 @@ spring:
   datasource:                                           # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource            # 数据源类型：HikariCP
     driver-class-name: com.mysql.cj.jdbc.Driver         # mysql驱动
-    url: jdbc:mysql://localhost:3306/foodie-shop-DB?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/foodie-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
     password: henry001
     hikari:
@@ -37,8 +37,8 @@ spring:
 #
 ############################################################
 mybatis:
-  type-aliases-package: foodie.backend.pojo     # 所有POJO类所在包路径
-  mapper-locations: classpath:mapper/*.xml      # mapper映射文件,classpath:所有的resources文件夹
+  type-aliases-package: com.foodie.backend.pojo                    # 所有POJO类所在包路径
+  mapper-locations: classpath:mapper/*.xml                         # mapper映射文件,classpath:所有的resources文件夹
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis日志sql打印
 
@@ -49,8 +49,8 @@ mybatis:
 ############################################################
 # 通用 Mapper 配置
 mapper:
-  mappers: foodie.backend.my.mapper.MyMapper
-  not-empty: false      # 在进行数据库操作的时候，判断表达式 如username!=null,是否追加username!=''
+  mappers: com.foodie.backend.my.mapper.MyMapper
+  not-empty: false                     # 在进行数据库操作的时候，判断表达式 如username!=null,是否追加username!=''
   identity: MYSQL
 # 分页插件配置
 pagehelper:

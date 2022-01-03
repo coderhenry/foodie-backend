@@ -19,7 +19,7 @@
 
         <!--
             common-mail
-            api -> service -> mapper -> pojo -> common
+            api -> service_old -> mapper -> pojo -> common
             api -> common-mail
             api可以使用service、pojo与common中相应的方法的
         -->
