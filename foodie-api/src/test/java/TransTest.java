@@ -9,8 +9,8 @@ import com.foodie.backend.service.TestTransService;
 /**
  * 事务测试类
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = com.foodie.backend.Application.class)
+//@RunWith(SpringRunner.class)
+//@SpringBootTest(classes = com.foodie.backend.Application.class)
 public class TransTest {
 
     @Autowired
@@ -19,7 +19,7 @@ public class TransTest {
     @Autowired
     private TestTransService testTransService;
 
-    @Test
+//    @Test
     public void myTest() {
         //    stuService.testPropagationTrans();
         testTransService.testPropagationTrans();
