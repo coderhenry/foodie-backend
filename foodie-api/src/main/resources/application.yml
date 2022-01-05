@@ -40,7 +40,7 @@ mybatis:
   type-aliases-package: com.foodie.backend.pojo                    # 所有POJO类所在包路径
   mapper-locations: classpath:mapper/*.xml                         # mapper映射文件,classpath:所有的resources文件夹
 #  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis日志sql打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl          #mybatis日志sql打印
 
 ############################################################
 #
