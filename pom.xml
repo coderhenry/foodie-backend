@@ -158,6 +158,7 @@
             <version>1.7.21</version>
         </dependency>
 
+<!--        TODO: 后续升级日志框架为log4j2-->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.logging.log4j</groupId>-->
 <!--            <artifactId>log4j-api</artifactId>-->
