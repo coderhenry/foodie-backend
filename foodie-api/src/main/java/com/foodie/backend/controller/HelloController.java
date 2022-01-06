@@ -13,9 +13,8 @@ import javax.servlet.http.HttpSession;
  * Created by Henry
  * 测试项目正常跑起来
  */
-
-@ApiIgnore
 //@Controller
+@ApiIgnore
 @RestController
 public class HelloController {
 

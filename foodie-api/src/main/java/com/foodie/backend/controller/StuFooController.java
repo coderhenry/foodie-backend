@@ -14,8 +14,8 @@ import springfox.documentation.annotations.ApiIgnore;
  * 测试项目正常跑起来
  */
 
-@ApiIgnore
 //@Controller
+@ApiIgnore
 @RestController
 public class StuFooController {
 
