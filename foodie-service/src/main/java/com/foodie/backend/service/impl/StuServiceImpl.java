@@ -52,6 +52,8 @@ public class StuServiceImpl implements StuService {
     }
 
 
+
+
     //用于演示事务（回滚机制）
     public void saveParent() {
         Stu stu = new Stu();
