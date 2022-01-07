@@ -1,17 +1,15 @@
 package com.foodie.backend.controller;
 
 import com.foodie.backend.enums.YesOrNo;
+import com.foodie.backend.pojo.Carousel;
 import com.foodie.backend.pojo.Category;
-import com.foodie.backend.pojo.vo.CategoryVO;
-import com.foodie.backend.pojo.vo.NewItemsVO;
+import com.foodie.backend.service.CarouselService;
 import com.foodie.backend.service.CategoryService;
 import com.foodie.backend.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +20,18 @@ import java.util.List;
 @RequestMapping("index")
 public class IndexController {
 
-//    @Autowired
-//    private CarouselService carouselService;
+    @Autowired
+    private CarouselService carouselService;
 
     @Autowired
     private CategoryService categoryService;
 
-//    @ApiOperation(value = "获取首页轮播图列表", notes = "获取首页轮播图列表", httpMethod = "GET")
-//    @GetMapping("/carousel")
-//    public IMOOCJSONResult carousel() {
-//        List<Carousel> list = carouselService.queryAll(YesOrNo.YES.type);
-//        return IMOOCJSONResult.ok(list);
-//    }
+    @ApiOperation(value = "获取首页轮播图列表", notes = "获取首页轮播图列表", httpMethod = "GET")
+    @GetMapping("/carousel")
+    public IMOOCJSONResult carousel() {
+        List<Carousel> list = carouselService.queryAll(YesOrNo.YES.type);
+        return IMOOCJSONResult.ok(list);
+    }
 
     /**
      * 首页分类展示需求：
