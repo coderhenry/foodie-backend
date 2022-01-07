@@ -1,19 +1,20 @@
-//package service;
-//
-//
-//import com.foodie.backend.pojo.vo.CategoryVO;
-//import com.foodie.backend.pojo.vo.NewItemsVO;
-//
-//import java.util.List;
-//
-//public interface CategoryService {
-//
-//    /**
-//     * 查询所有一级分类
-//     * @return
-//     */
-//    public List<Category> queryAllRootLevelCat();
-//
+package com.foodie.backend.service;
+
+import com.foodie.backend.pojo.Category;
+import com.foodie.backend.pojo.vo.CategoryVO;
+import com.foodie.backend.pojo.vo.NewItemsVO;
+
+import java.util.List;
+
+public interface CategoryService {
+
+    /**
+     * 查询所有一级分类
+     *
+     * @return
+     */
+    public List<Category> queryAllRootLevelCat();
+
 //    /**
 //     * 根据一级分类id查询子分类信息
 //     * @param rootCatId
@@ -27,5 +28,5 @@
 //     * @return
 //     */
 //    public List<NewItemsVO> getSixNewItemsLazy(Integer rootCatId);
-//
-//}
+
+}
