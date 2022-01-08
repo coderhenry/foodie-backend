@@ -1,6 +1,7 @@
 package com.foodie.backend.service.impl;
 
 import com.foodie.backend.mapper.CategoryMapper;
+import com.foodie.backend.mapper.CategoryMapperCustom;
 import com.foodie.backend.pojo.Category;
 import com.foodie.backend.service.CategoryService;
 import com.foodie.backend.pojo.vo.CategoryVO;
@@ -21,8 +22,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
 
-//    @Autowired
-//    private CategoryMapperCustom categoryMapperCustom;
+    @Autowired
+    private CategoryMapperCustom categoryMapperCustom;
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -37,19 +38,19 @@ public class CategoryServiceImpl implements CategoryService {
         return result;
     }
 
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public List<CategoryVO> getSubCatList(Integer rootCatId) {
-//        return categoryMapperCustom.getSubCatList(rootCatId);
-//    }
-//
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public List<NewItemsVO> getSixNewItemsLazy(Integer rootCatId) {
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("rootCatId", rootCatId);
-//
-//        return categoryMapperCustom.getSixNewItemsLazy(map);
-//    }
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<CategoryVO> getSubCatList(Integer rootCatId) {
+        return categoryMapperCustom.getSubCatList(rootCatId);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<NewItemsVO> getSixNewItemsLazy(Integer rootCatId) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("rootCatId", rootCatId);
+
+        return categoryMapperCustom.getSixNewItemsLazy(map);
+    }
 }
