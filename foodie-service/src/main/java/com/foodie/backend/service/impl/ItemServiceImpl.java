@@ -1,10 +1,13 @@
 package com.foodie.backend.service.impl;
 
+import com.foodie.backend.mapper.ItemsCommentsMapper;
 import com.foodie.backend.mapper.ItemsImgMapper;
 import com.foodie.backend.mapper.ItemsMapper;
+import com.foodie.backend.mapper.ItemsMapperCustom;
 import com.foodie.backend.mapper.ItemsParamMapper;
 import com.foodie.backend.mapper.ItemsSpecMapper;
 import com.foodie.backend.pojo.Items;
+import com.foodie.backend.pojo.ItemsComments;
 import com.foodie.backend.pojo.ItemsImg;
 import com.foodie.backend.pojo.ItemsParam;
 import com.foodie.backend.pojo.ItemsSpec;
@@ -41,10 +44,10 @@ public class ItemServiceImpl implements ItemService {
     private ItemsSpecMapper itemsSpecMapper;
     @Autowired
     private ItemsParamMapper itemsParamMapper;
-//    @Autowired
-//    private ItemsCommentsMapper itemsCommentsMapper;
-//    @Autowired
-//    private ItemsMapperCustom itemsMapperCustom;
+    @Autowired
+    private ItemsCommentsMapper itemsCommentsMapper;
+    @Autowired
+    private ItemsMapperCustom itemsMapperCustom;
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -82,70 +85,69 @@ public class ItemServiceImpl implements ItemService {
         return itemsParamMapper.selectOneByExample(itemsParamExp);
     }
 
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public CommentLevelCountsVO queryCommentCounts(String itemId) {
-//        Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type);
-//        Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type);
-//        Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type);
-//        Integer totalCounts = goodCounts + normalCounts + badCounts;
-//
-//        CommentLevelCountsVO countsVO = new CommentLevelCountsVO();
-//        countsVO.setTotalCounts(totalCounts);
-//        countsVO.setGoodCounts(goodCounts);
-//        countsVO.setNormalCounts(normalCounts);
-//        countsVO.setBadCounts(badCounts);
-//
-//        return countsVO;
-//    }
-//
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    Integer getCommentCounts(String itemId, Integer level) {
-//        ItemsComments condition = new ItemsComments();
-//        condition.setItemId(itemId);
-//        if (level != null) {
-//            condition.setCommentLevel(level);
-//        }
-//        return itemsCommentsMapper.selectCount(condition);
-//    }
-//
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public PagedGridResult queryPagedComments(String itemId,
-//                                              Integer level,
-//                                              Integer page,
-//                                              Integer pageSize) {
-//
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("itemId", itemId);
-//        map.put("level", level);
-//
-//        // mybatis-pagehelper
-//
-//        /**
-//         * page: 第几页
-//         * pageSize: 每页显示条数
-//         */
-//        PageHelper.startPage(page, pageSize);
-//
-//        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
-//        for (ItemCommentVO vo : list) {
-//            vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));    //脱敏
-//        }
-//
-//        return setterPagedGrid(list, page);
-//    }
-//
-//    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
-//        PageInfo<?> pageList = new PageInfo<>(list);
-//        PagedGridResult grid = new PagedGridResult();
-//        grid.setPage(page);
-//        grid.setRows(list);
-//        grid.setTotal(pageList.getPages());
-//        grid.setRecords(pageList.getTotal());
-//        return grid;
-//    }
-//
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public CommentLevelCountsVO queryCommentCounts(String itemId) {
+        Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type);
+        Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type);
+        Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type);
+        Integer totalCounts = goodCounts + normalCounts + badCounts;
+
+        CommentLevelCountsVO countsVO = new CommentLevelCountsVO();
+        countsVO.setTotalCounts(totalCounts);
+        countsVO.setGoodCounts(goodCounts);
+        countsVO.setNormalCounts(normalCounts);
+        countsVO.setBadCounts(badCounts);
+
+        return countsVO;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    Integer getCommentCounts(String itemId, Integer level) {
+        ItemsComments condition = new ItemsComments();
+        condition.setItemId(itemId);
+        if (level != null) {
+            condition.setCommentLevel(level);
+        }
+        return itemsCommentsMapper.selectCount(condition);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult queryPagedComments(String itemId,
+                                              Integer level,
+                                              Integer page,
+                                              Integer pageSize) {
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("itemId", itemId);
+        map.put("level", level);
+
+        /**
+         * mybatis-pagehelper
+         * page: 第几页
+         * pageSize: 每页显示条数
+         */
+        PageHelper.startPage(page, pageSize);
+
+        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
+        for (ItemCommentVO vo : list) {
+            vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));    //脱敏
+        }
+
+        return setterPagedGrid(list, page);
+    }
+
+    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
+        PageInfo<?> pageList = new PageInfo<>(list);
+        PagedGridResult grid = new PagedGridResult();
+        grid.setPage(page);
+        grid.setRows(list);
+        grid.setTotal(pageList.getPages());
+        grid.setRecords(pageList.getTotal());
+        return grid;
+    }
+
 //    @Transactional(propagation = Propagation.SUPPORTS)
 //    @Override
 //    public PagedGridResult searhItems(String keywords, String sort, Integer page, Integer pageSize) {

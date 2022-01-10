@@ -4,6 +4,8 @@ import com.foodie.backend.pojo.Items;
 import com.foodie.backend.pojo.ItemsImg;
 import com.foodie.backend.pojo.ItemsParam;
 import com.foodie.backend.pojo.ItemsSpec;
+import com.foodie.backend.pojo.vo.CommentLevelCountsVO;
+import com.foodie.backend.utils.PagedGridResult;
 
 import java.util.List;
 
@@ -41,23 +43,23 @@ public interface ItemService {
      */
     public ItemsParam queryItemParam(String itemId);
 
-//    /**
-//     * 根据商品id查询商品的评价等级数量
-//     *
-//     * @param itemId
-//     */
-//    public CommentLevelCountsVO queryCommentCounts(String itemId);
-//
-//    /**
-//     * 根据商品id查询商品的评价（分页）
-//     *
-//     * @param itemId
-//     * @param level
-//     * @return
-//     */
-//    public PagedGridResult queryPagedComments(String itemId, Integer level,
-//                                              Integer page, Integer pageSize);
-//
+    /**
+     * 根据商品id查询商品的评价等级数量
+     *
+     * @param itemId
+     */
+    public CommentLevelCountsVO queryCommentCounts(String itemId);
+
+    /**
+     * 根据商品id查询商品的评价（分页）
+     *
+     * @param itemId
+     * @param level
+     * @return
+     */
+    public PagedGridResult queryPagedComments(String itemId, Integer level,
+                                              Integer page, Integer pageSize);
+
 //    /**
 //     * 搜索商品列表
 //     *
