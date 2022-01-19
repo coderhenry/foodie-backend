@@ -5,10 +5,19 @@ package com.foodie.backend.pojo.bo;
  */
 public class SubmitOrderBO {
 
+    // 用户id
     private String userId;
+
+    // 商品规格ids
     private String itemSpecIds;
+
+    // 收货地址id
     private String addressId;
+
+    // 支付方式
     private Integer payMethod;
+
+    // 备注
     private String leftMsg;
 
     public String getUserId() {
