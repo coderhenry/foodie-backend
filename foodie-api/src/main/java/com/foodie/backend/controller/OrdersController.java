@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 public class OrdersController extends BaseController {
 
-//    final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
+    final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
     @Autowired
     private OrderService orderService;
