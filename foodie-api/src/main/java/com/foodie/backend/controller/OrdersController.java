@@ -21,13 +21,14 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
 
 @Api(value = "订单相关", tags = {"订单相关的api接口"})
 @RequestMapping("orders")
 @RestController
 public class OrdersController extends BaseController {
 
-    final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
+//    final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
     @Autowired
     private OrderService orderService;
@@ -42,8 +43,8 @@ public class OrdersController extends BaseController {
             HttpServletRequest request,
             HttpServletResponse response) {
 
-        if (submitOrderBO.getPayMethod() != PayMethod.WEIXIN.type
-            && submitOrderBO.getPayMethod() != PayMethod.ALIPAY.type ) {
+        if (!Objects.equals(submitOrderBO.getPayMethod(), PayMethod.WEIXIN.type)
+            && !Objects.equals(submitOrderBO.getPayMethod(), PayMethod.ALIPAY.type)) {
             return IMOOCJSONResult.errorMsg("支付方式不支持！");
         }
 
@@ -54,11 +55,11 @@ public class OrdersController extends BaseController {
         String orderId = orderVO.getOrderId();
 
         // 2. 创建订单以后，移除购物车中已结算（已提交）的商品
-        /**
-         * 1001
-         * 2002 -> 用户购买
-         * 3003 -> 用户购买
-         * 4004
+        /*
+          1001
+          2002 -> 用户购买
+          3003 -> 用户购买
+          4004
          */
         // TODO 整合redis之后，完善购物车中的已结算商品清除，并且同步到前端的cookie
         CookieUtils.setCookie(request, response, FOODIE_SHOPCART, "", true);
